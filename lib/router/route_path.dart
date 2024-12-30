@@ -3,4 +3,5 @@ abstract class RoutePath {
 
   static const String home = 'home';
   static const String login = 'login';
+  static const String loginProvider = 'loginProvider';
 }
