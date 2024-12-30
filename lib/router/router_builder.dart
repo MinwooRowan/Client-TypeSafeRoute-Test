@@ -7,14 +7,18 @@ import 'package:client_type_safe_route_test/presentation/login/view_model/login_
 import 'package:client_type_safe_route_test/router/route_path.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'router_builder.g.dart';
 
 @TypedGoRoute<LoginRoute>(path: '/${RoutePath.login}', routes: [])
 class LoginRoute extends GoRouteData {
+  LoginRoute({required this.$extra});
+  final Ref $extra;
+
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return LoginScreen(viewModel: getIt<LoginViewModel>());
+    return LoginScreen(viewModel: getIt<LoginViewModel>(param1: $extra));
   }
 }
 

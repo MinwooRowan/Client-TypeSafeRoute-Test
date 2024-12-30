@@ -21,6 +21,7 @@ import 'package:client_type_safe_route_test/presentation/home/view_model/home_vi
 import 'package:client_type_safe_route_test/presentation/login/view_model/login_view_model.dart'
     as _i906;
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:hooks_riverpod/hooks_riverpod.dart' as _i275;
 import 'package:injectable/injectable.dart' as _i526;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -41,8 +42,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i914.UserUseCase(gh<_i956.UserRepository>()));
     gh.factory<_i397.HomeViewModel>(
         () => _i397.HomeViewModel(gh<_i914.UserUseCase>()));
-    gh.factory<_i906.LoginViewModel>(
-        () => _i906.LoginViewModel(gh<_i914.UserUseCase>()));
+    gh.factoryParam<_i906.LoginViewModel, _i275.Ref<Object?>, dynamic>((
+      ref,
+      _,
+    ) =>
+        _i906.LoginViewModel(
+          gh<_i914.UserUseCase>(),
+          ref,
+        ));
     return this;
   }
 }
