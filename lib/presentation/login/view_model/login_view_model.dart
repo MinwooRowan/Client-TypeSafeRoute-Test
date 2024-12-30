@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class LoginViewModel extends ChangeNotifier {
+class LoginViewModel {
   LoginViewModel(this._loginUseCase) {
     logger.d('LoginViewModel init');
   }
@@ -18,6 +18,5 @@ class LoginViewModel extends ChangeNotifier {
   Future<void> getUserInfo() async {
     final UserEntity response = await _loginUseCase.getUserInfo();
     _userInfoState.value = AsyncValue.data(response);
-    notifyListeners();
   }
 }
